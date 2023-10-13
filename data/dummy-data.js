@@ -12,13 +12,9 @@ import {
   Touchable,
   TouchableOpacity,
 } from 'react-native';
-import {articalsde} from '../NewsApp/data/dummy-data';
 
 export default function App() {
-  const [articals, setArticals] = useState([]);
-  const onRefresh = React.useCallback(async () => {
-    setRefreshing(true);
-  });
+  const [articalsde, setArticalsde] = useState([]);
   useEffect(() => {
     getFromApi();
   }, []);
@@ -31,48 +27,28 @@ export default function App() {
       .then(response => response.json())
       .then(json => {
         console.log('json', json);
-        let response = json.articles;
-        setArticals(response);
+        let response = json.articlesde;
+        setArticalsde(response);
       })
       .catch(error => {
         console.error(error);
       });
   };
-
   const [searchquery, setsearchquery] = useState('');
   const [searchedArticals, setSearchedArticals] = useState('');
-  const [refreshing, setRefreshing] = React.useState(false);
 
   return (
     <View>
-      <TextInput
-        placeholder="search"
-        clearButtonMode="always"
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={searchquery}
-        onChangeText={query => {
-          let newObj = articals.find(obj => obj.title.includes(query));
-          console.log('newObj', newObj);
-          setsearchquery(query);
-          if (query == '') {
-            setSearchedArticals('');
-          } else {
-            setSearchedArticals([newObj]);
-          }
-        }}
-        style={styles.searchbox}></TextInput>
-
       <FlatList
         padding={30}
         pr
-        data={searchedArticals ? searchedArticals : articals}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
+        data={searchedArticals ? searchedArticals : articalsde}
         renderItem={({item}) => (
           <View style={styles.articles}>
+            <Text style={{}}>{item?.author}</Text>
             <Text style={{}}>{item?.title}</Text>
+            <Text style={{}}>{item?.description}</Text>
+            <Text style={{}}>{item?.content}</Text>
             <View style={{height: 1, backgroundColor: 'gray'}}></View>
             <Image
               source={{uri: item?.urlToImage}}
