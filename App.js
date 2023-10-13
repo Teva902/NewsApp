@@ -12,7 +12,6 @@ import {
   Touchable,
   TouchableOpacity,
 } from 'react-native';
-import {articalsde} from '../NewsApp/data/dummy-data';
 
 export default function App() {
   const [articals, setArticals] = useState([]);
@@ -72,12 +71,12 @@ export default function App() {
         }
         renderItem={({item}) => (
           <View style={styles.articles}>
-            <Text style={{}}>{item?.title}</Text>
+            <Text style={{fontSize: 20, margin: 16}}>{item?.title}</Text>
             <View style={{height: 1, backgroundColor: 'gray'}}></View>
             <Image
               source={{uri: item?.urlToImage}}
               resizeMode="contain"
-              style={{width: '100%', height: '70%'}}
+              style={{width: '100%', height: '70%', borderRadius: 10}}
             />
           </View>
         )}
@@ -103,5 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 300,
     fontSize: 20,
+    margin: 20,
+    elevation: 4,
   },
 });
