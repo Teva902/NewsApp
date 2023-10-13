@@ -34,19 +34,16 @@ export default function App() {
         console.error(error);
       });
   };
-  const [searchquery, setsearchquery] = useState('');
-  const [searchedArticals, setSearchedArticals] = useState('');
 
   return (
     <View>
       <FlatList
         padding={30}
-        pr
-        data={searchedArticals ? searchedArticals : articalsde}
+        data={articalsde}
         renderItem={({item}) => (
           <View style={styles.articles}>
-            <Text style={{}}>{item?.author}</Text>
             <Text style={{}}>{item?.title}</Text>
+            <Text style={{}}>{item?.author}</Text>
             <Text style={{}}>{item?.description}</Text>
             <Text style={{}}>{item?.content}</Text>
             <View style={{height: 1, backgroundColor: 'gray'}}></View>
